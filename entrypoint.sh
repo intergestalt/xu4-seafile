@@ -165,7 +165,7 @@ control_seafile() {
 control_seahub() {
   sudo -u seafile bash -c ". /tmp/seafile.env; ${INSTALLPATH}/seahub.sh "$@""
   local RET=$?
-  sleep 1
+  sleep 5
   return ${RET}
 }
 

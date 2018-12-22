@@ -1,4 +1,4 @@
-FROM hypriot/rpi-python
+FROM resin/odroid-xu4-python
 MAINTAINER Yuri Teixeira <oyuriteixeira at gmail dot com>
 
 ENV DATADIR /seafile
@@ -9,6 +9,8 @@ RUN sudo apt-get update && apt-get install -y \
     --no-install-recommends \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --upgrade pip && pip install pillow==5.3 django==1.8 pytz django-statici18n djangorestframework django_compressor django-post_office https://github.com/haiwen/django-constance/archive/bde7f7c.zip gunicorn flup chardet python-dateutil six openpyxl urllib3==1.23
 
 RUN useradd -d ${DATADIR} -M -s /bin/bash -c "Seafile User" seafile \
     && mkdir -p ${DATADIR} ${BASEPATH} 
